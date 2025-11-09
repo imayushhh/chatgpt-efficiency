@@ -12,25 +12,25 @@ async function loadTSV(collectionName) {
   const db = client.db(DB_NAME);
   const col = db.collection(collectionName);
 
-  await col.deleteMany({}); // clear old data
+  await col.deleteMany({}); 
 
   const data = fs.readFileSync(filePath, 'utf8')
     .split('\n')
     .map(line => line.trim())
     .filter(line => line.length > 0)
     .map(line => {
-      const parts = line.split(/\t/); // split by tab
+      const parts = line.split(/\t/); 
       return {
         question: parts[0] || "",
         options: parts.slice(1, 4),       
         correct_answer: parts[5] || "",   
-        chatgpt_response: "",             // leave blank, will fill later
+        chatgpt_response: "",             
         domain: collectionName
       };
     });
 
   await col.insertMany(data);
-  console.log(`✅ Inserted ${data.length} documents into ${collectionName}`);
+  console.log(` Inserted ${data.length} documents into ${collectionName}`);
   await client.close();
 }
 
