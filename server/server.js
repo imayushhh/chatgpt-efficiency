@@ -7,14 +7,17 @@ const PORT = 8080;
 // avoid cors errors in the server
 const cors = require('cors');
 
+app.set('view engine', 'ejs');
+
 // middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-// testing
+// testing, render index.ejs in views
+// we can pass an additional argument in an object, that allows code to be sent over to views
 app.get("/", cors(), (req, res) => {
-    res.send("home page");
+    res.render("home", {text: "HOME PAGE"})
 });
 
 app.get("/about", cors(), (req, res) => {
