@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-// testing, render index.ejs in views
+// render index.ejs in views
 // we can pass an additional argument in an object, that allows code to be sent over to views
 app.get("/", cors(), (req, res) => {
     res.render("home", {text: "HOME PAGE"})
