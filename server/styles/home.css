@@ -33,7 +33,12 @@ body {
     height: 800px;
 }
 
-.bios-title {
+#view-github {
+    margin: 2%;
+}
+
+.bios-title,
+.about-project-title {
     text-decoration: underline;
     font-weight: bold;
     margin: 2%;
