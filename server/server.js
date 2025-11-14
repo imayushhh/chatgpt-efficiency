@@ -14,8 +14,13 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
+// linking css files to express
+app.use(express.static("home"));
+
+
 // render index.ejs in views
 // we can pass an additional argument in an object, that allows code to be sent over to views
+// project introduction and short bios about ourselv
 app.get("/", cors(), (req, res) => {
     res.render("home", {text: "HOME PAGE"})
 });
