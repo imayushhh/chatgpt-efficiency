@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // linking css files to express
-app.use(express.static("home"));
+app.use(express.static("styles"));
 
 
 // render index.ejs in views
