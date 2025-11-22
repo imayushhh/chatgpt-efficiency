@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <title>Project | ChatGPT Evaluation</title>
+</head>
+
+<body>
+    <!-- Assistant Agent -->
+    <div id="assistant-container">
+        <div class="assistant-header">
+            <div class="assistant-header-left">
+                <div class="assistant-character"></div>
+                <div class="assistant-name">
+                    <span>Project Assistant</span>
+                    <span>Evaluation walkthrough</span>
+                </div>
+            </div>
+            <button id="assistant-toggle" class="assistant-toggle-btn">
+                <span class="icon">▾</span>
+                <span>Collapse</span>
+            </button>
+        </div>
+        <div class="assistant-speech-bubble">
+            <p id="assistant-text">Use the panel to configure and start a new ChatGPT evaluation.</p>
+        </div>
+    </div>
+
+    <div class="home-container">
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <div class="nav-inner">
+                <div class="nav-left">
+                    <img class="nav-logo-img" src="/images/logo.png" alt="Logo">
+                    <div class="nav-title">ChatGPT Efficiency</div>
+                </div>  
+                <div class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/project" class="nav-link active">Project</a>
+                    <a href="/analysis" class="nav-link">Analysis</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="page-inner">
+            <!-- Page header -->
+            <header class="header-container">
+                <div class="header-content">
+                    <p class="header-eyebrow">Control Panel</p>
+                    <h1 class="header-title">ChatGPT Evaluation Runner</h1>
+                    <p class="header-subtitle">
+                        Configure an evaluation run by choosing the domain and number of questions. Live progress is
+                        streamed to this page using WebSockets as the server works through each item.
+                    </p>
+                </div>
+            </header>
+
+            <section class="body-container">
+                <div class="section-header">
+                    <h2 class="section-title">Evaluation Setup</h2>
+                    <p class="section-subtitle">Select your domain and question limit, then start the ChatGPT run.</p>
+                </div>
+
+                <div class="evaluation-panel">
+                    <!-- Left: explanation -->
+                    <section class="project-intro-card">
+                        <p>
+                            This control panel triggers the evaluation pipeline on the server. When you press
+                            <strong>Start ChatGPT Evaluation</strong>, the backend:
+                        </p>
+                        <ol class="project-steps">
+                            <li>Validates your inputs using Express middleware to ensure safe and correct parameters.</li>
+                            <li>Retrieves multiple-choice questions for the selected domain from MongoDB.</li>
+                            <li>Sends each question to ChatGPT via the OpenAI API and records the model’s response.</li>
+                            <li>Measures response time for each question and stores both accuracy and timing metrics.</li>
+                            <li>Streams live status updates back to this page over a WebSocket connection.</li>
+                        </ol>
+                        <p style="margin-top: 10px;">
+                            You can run evaluations for a specific domain (History, Social Science, or Computer
+                            Security) or against all domains at once. Results are later aggregated on the Analysis
+                            page to help compare ChatGPT’s performance across topics.
+                        </p>
+                    </section>
+
+                    <!-- Right: controls -->
+                    <section class="control-section">
+                        <div class="input-group">
+                            <label for="domain-select">Select domain</label>
+                            <p class="input-description">
+                                Choose a specific subject area or evaluate all domains together.
+                            </p>
+                            <select id="domain-select">
+                                <option value="all">All Domains</option>
+                                <option value="History">History</option>
+                                <option value="Social_Science">Social Science</option>
+                                <option value="Computer_Security">Computer Security</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="question-limit">Question limit (1–100)</label>
+                            <p class="input-description">
+                                Controls how many questions will be sent to ChatGPT in this run. Higher limits take
+                                longer but provide more accurate statistics.
+                            </p>
+                            <input type="number" id="question-limit" value="10" min="1" max="100">
+                        </div>
+
+                        <button id="start-evaluation-btn">
+                            Start ChatGPT Evaluation
+                        </button>
+
+                        <div class="websocket-status-box">
+                            <h4>Live Evaluation Status</h4>
+                            <pre id="status-log">Waiting to start evaluation…</pre>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Sticky nav shadow
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-container');
+            if (window.pageYOffset > 0) {
+                nav.classList.add('add-shadow');
+            } else {
+                nav.classList.remove('add-shadow');
+            }
+        });
+
+        // Assistant logic for Project page
+        document.addEventListener('DOMContentLoaded', () => {
+            const bubble = document.querySelector('.assistant-speech-bubble');
+            const textElement = document.getElementById('assistant-text');
+            const character = document.querySelector('.assistant-character');
+            const container = document.getElementById('assistant-container');
+            const toggleBtn = document.getElementById('assistant-toggle');
+
+            if (!textElement || !bubble || !character || !container || !toggleBtn) {
+                console.error("Assistant elements not found. Check HTML structure.");
+                return;
+            }
+
+            const facts = [
+                "Start by selecting a domain and question limit, then click the evaluation button.",
+                "All questions are retrieved from a MongoDB collection before being sent to ChatGPT.",
+                "Each status line in the log below comes from a WebSocket message sent by the server.",
+                "Middleware validates your query parameters before any evaluation begins.",
+                "You can re-run evaluations with different limits to compare consistency.",
+                "The Analysis page aggregates accuracy and response-time metrics from past runs.",
+                "Use smaller limits first to quickly test that everything is working correctly."
+            ];
+
+            let factIndex = 0;
+            const intervalTime = 9000;
+
+            function updateFact() {
+                bubble.classList.remove('visible');
+
+                setTimeout(() => {
+                    textElement.textContent = facts[factIndex];
+                    factIndex = (factIndex + 1) % facts.length;
+                    bubble.classList.add('visible');
+                }, 400);
+            }
+
+            updateFact();
+            let interval = setInterval(updateFact, intervalTime);
+
+            character.addEventListener('click', () => {
+                clearInterval(interval);
+                updateFact();
+                interval = setInterval(updateFact, intervalTime);
+            });
+
+            // Collapse / expand assistant
+            toggleBtn.addEventListener('click', () => {
+                const isCollapsed = container.classList.toggle('collapsed');
+                const icon = toggleBtn.querySelector('.icon');
+                const label = toggleBtn.querySelector('span:last-child');
+
+                if (isCollapsed) {
+                    icon.textContent = '▸';
+                    label.textContent = 'Expand';
+                } else {
+                    icon.textContent = '▾';
+                    label.textContent = 'Collapse';
+                }
+            });
+        });
+    </script>
+
+    <!-- Your existing client-side WebSocket + fetch logic for /api/evaluate can stay below this if you have it -->
+</body>
+</html>

@@ -3,59 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
-    <!-- copy this link on every page -->
-    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="/styles.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
-    <title>Home Page</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <title>Home | ChatGPT Efficiency</title>
 </head>
 
 <body>
-    <div class="home-container">
-        <!-- copy paste this at the top of each ejs route -->
-        <nav class="nav-container">
-            <a href="/" class="nav-link">Home</a>
-            <a href="/project" class="nav-link">Project</a>
-            <a href="/analysis" class="nav-link">Analysis</a>
-        </nav>
-        <!-- stop here -->
-        <div class="header-container">
-            <h1>ChatGPT Efficiency Assignment</h1>
+    <!-- Assistant Agent -->
+    <div id="assistant-container">
+        <div class="assistant-header">
+            <div class="assistant-header-left">
+                <div class="assistant-character"></div>
+                <div class="assistant-name">
+                    <span>Project Assistant</span>
+                    <span>Guiding you through the site</span>
+                </div>
+            </div>
+            <button id="assistant-toggle" class="assistant-toggle-btn">
+                <span class="icon">▾</span>
+                <span>Collapse</span>
+            </button>
         </div>
-        <div class="body-container">
-            <h2 class="bios-title"><i>Student Profiles</i></h2>
-            <section class="aphy-intro-container">
-                <p class="aphy-intro">
-                    My name is <a href="https://github.com/aphy18"><b>Aphason Aberham</b></a>. I live in downtown Toronto, and I am currently a third year BCom student, majoring in Information Technology at York University. I have a strong background in HTML, CSS, JavaScript and some of their frameworks, which I've used to develop projects for my portfolio. Notably, I have experience using technologies such as Node.js, Express.js, React.js, PostgresQL, EJS, and jQuery.</p>
-                </p>
-            </section>
-            <section class="ayush-intro-container">
-                <p class="ayush-intro">
-                    I am <a href="https://github.com/imayushhh"><b>Ayush Gupta</b></a>, a student currently pursuing a Bachelor of Arts in Information Technology with a strong interest in cloud computing and full-stack development. I enjoy building interactive applications and exploring ways to integrate AI into real-world solutions. I have a technical background in JavaScript, Python, HTML, CSS, Bootstrap, Node.js, and Express.js.
-                </p>
-            </section>
-            <h2 class="about-project-title"><i>About Our Project</i></h2>
-            <section class="project-overview">
-                <p class="about-project">
-                    This application is designed to evaluate ChatGPT’s performance in answering multiple-choice questions across various domains such as History, Social Science, and Computer Security. The app retrieves questions from a MongoDB database, sends them to ChatGPT using the OpenAI API, records the AI’s responses along with response times, and stores the results back into the database. It also includes middleware to validate query inputs, WebSocket integration for live progress updates, and API endpoints to retrieve evaluation metrics in real time. The project demonstrates full-stack development, server-client communication, and the integration of AI-driven evaluation within a web application.
-                </p>
-            </section>
-            <section class="home-image-container">
-
-            </section>
+        <div class="assistant-speech-bubble">
+            <p id="assistant-text">Welcome! I’ll guide you through this assignment.</p>
         </div>
     </div>
 
+    <div class="home-container">
+        <!-- Navigation -->
+        <nav class="nav-container">
+            <div class="nav-inner">
+               <div class="nav-left">
+                    <img class="nav-logo-img" src="/images/logo.png" alt="Logo">
+                    <div class="nav-title">ChatGPT Efficiency</div>
+                </div>
+                <div class="nav-links">
+                    <a href="/" class="nav-link active">Home</a>
+                    <a href="/project" class="nav-link">Project</a>
+                    <a href="/analysis" class="nav-link">Analysis</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="page-inner">
+            <!-- Hero / Header -->
+            <header class="header-container">
+                <div class="header-content">
+                    <p class="header-eyebrow">ITEC 4020 · Web Technologies</p>
+                    <h1 class="header-title">ChatGPT Efficiency Assignment</h1>
+                    <p class="header-subtitle">
+                        A full-stack web application that measures how accurately and efficiently ChatGPT answers
+                        multiple-choice questions across different domains.
+                    </p>
+                </div>
+            </header>
+
+            <section class="body-container">
+                <!-- Student Profiles -->
+                <div class="section-header">
+                    <h2 class="section-title">Student Profiles</h2>
+                    <p class="section-subtitle">Meet the team behind this evaluation project.</p>
+                </div>
+
+                <div class="bio-grid">
+                    <!-- Aphason -->
+                    <article class="bio-card">
+                        <div class="bio-header">
+                        <img class="bio-photo" src="/images/aphason.jpg" alt="Aphason Photo">
+                            <div>
+                                <h3 class="bio-name">
+                                    <a href="https://github.com/aphy18" target="_blank" rel="noopener noreferrer">
+                                        Aphason Aberham
+                                    </a>
+                                </h3>
+                                <p class="bio-role">BCom, Information Technology · York University</p>
+                            </div>
+                        </div>
+                        <p class="bio-body">
+                            I am a third-year Bachelor of Commerce student majoring in Information Technology at York
+                            University, based in downtown Toronto. I enjoy building full-stack web applications and
+                            experimenting with modern JavaScript frameworks.
+                            I have experience with HTML, CSS, JavaScript, Node.js, Express.js, React, PostgreSQL, EJS,
+                            and jQuery. This project strengthened my skills in backend APIs, database integration, and
+                            real-time communication.
+                        </p>
+                        <div class="bio-tags">
+                            <span class="tag-pill accent">Full-Stack Development</span>
+                            <span class="tag-pill">React · Node.js · Express</span>
+                            <span class="tag-pill">PostgreSQL · EJS</span>
+                        </div>
+                        <div class="bio-footer">
+                            <a class="link-button" href="https://github.com/aphy18" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub Profile</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Ayush -->
+                    <article class="bio-card">
+                        <div class="bio-header">
+                        <img class="bio-photo" src="/images/ayush.jpg" alt="Ayush Photo">
+
+                            <div>
+                                <h3 class="bio-name">
+                                    <a href="https://github.com/imayushhh" target="_blank" rel="noopener noreferrer">
+                                        Ayush Gupta
+                                    </a>
+                                </h3>
+                                <p class="bio-role">BA, Information Technology · York University</p>
+                            </div>
+                        </div>
+                        <p class="bio-body">
+                            I am a Bachelor of Arts student in Information Technology with a strong interest in cloud
+                            computing, data, and full-stack development. I enjoy building interactive, data-driven
+                            applications and exploring how AI can be applied to real-world scenarios.
+                            My technical background includes JavaScript, Python, HTML, CSS, Bootstrap, Node.js, and
+                            Express.js, and I am actively expanding my skills in backend systems and cloud platforms.
+                        </p>
+                        <div class="bio-tags">
+                            <span class="tag-pill accent">Cloud & AI Enthusiast</span>
+                            <span class="tag-pill">JavaScript · Python</span>
+                            <span class="tag-pill">Node.js · Express</span>
+                        </div>
+                        <div class="bio-footer">
+                            <a class="link-button" href="https://github.com/imayushhh" target="_blank"
+                               rel="noopener noreferrer">
+                                <span>GitHub Profile</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Project Overview -->
+                <div class="section-header">
+                    <h2 class="section-title">About the Project</h2>
+                    <p class="section-subtitle">How we evaluate ChatGPT’s performance across multiple domains.</p>
+                </div>
+
+                <section class="project-overview-card">
+                    <div class="project-text">
+                        <p>
+                            This application evaluates ChatGPT’s performance on multiple-choice questions drawn from
+                            domains such as <strong>History</strong>, <strong>Social Science</strong>, and
+                            <strong>Computer Security</strong>. Questions are stored in a MongoDB database and served
+                            through a Node.js and Express backend.
+                        </p>
+                        <p>
+                            For each evaluation run, the server retrieves a set of questions, sends them to ChatGPT via
+                            the OpenAI API, and records the model’s selected answers along with detailed response-time
+                            measurements. The results are written back to MongoDB for further analysis and visualization
+                            on the client side.
+                        </p>
+                    </div>
+                    <ul class="project-highlight-list">
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Validates user inputs with custom Express middleware before running any evaluation.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Streams live evaluation progress to the browser using WebSockets.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Calculates metrics such as accuracy and response time per domain for later analysis.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Demonstrates full-stack development: MongoDB, Node.js/Express, WebSocket, and a dynamic frontend.</span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+        </main>
+    </div>
+
     <script>
-        window.addEventListener('scroll', (e) => {
+        // Sticky nav shadow
+        window.addEventListener('scroll', () => {
             const nav = document.querySelector('.nav-container');
             if (window.pageYOffset > 0) {
                 nav.classList.add('add-shadow');
             } else {
                 nav.classList.remove('add-shadow');
             }
+        });
+
+        // Assistant logic: rotating facts + collapse
+        document.addEventListener('DOMContentLoaded', () => {
+            const bubble = document.querySelector('.assistant-speech-bubble');
+            const textElement = document.getElementById('assistant-text');
+            const character = document.querySelector('.assistant-character');
+            const container = document.getElementById('assistant-container');
+            const toggleBtn = document.getElementById('assistant-toggle');
+
+            if (!textElement || !bubble || !character || !container || !toggleBtn) {
+                console.error("Assistant elements not found. Check HTML structure.");
+                return;
+            }
+
+            const facts = [
+                "Welcome! This site evaluates how well ChatGPT answers multiple-choice questions.",
+                "Use the navigation bar to explore the Home, Project, and Analysis sections.",
+                "Questions are pulled from MongoDB and sent to ChatGPT through the OpenAI API.",
+                "We measure both accuracy and response time for each domain.",
+                "Live evaluation status is streamed to the browser using WebSockets.",
+                "Custom middleware validates all inputs before the evaluation starts.",
+                "Check the Analysis page to see how ChatGPT performed across domains."
+            ];
+
+            let factIndex = 0;
+            const intervalTime = 9000;
+
+            function updateFact() {
+                bubble.classList.remove('visible');
+
+                setTimeout(() => {
+                    textElement.textContent = facts[factIndex];
+                    factIndex = (factIndex + 1) % facts.length;
+                    bubble.classList.add('visible');
+                }, 400);
+            }
+
+            // Start rotation
+            updateFact();
+            let interval = setInterval(updateFact, intervalTime);
+
+            // Clicking the orb gives a quick refresh of the tip
+            character.addEventListener('click', () => {
+                clearInterval(interval);
+                updateFact();
+                interval = setInterval(updateFact, intervalTime);
+            });
+
+            // Collapse / expand assistant
+            toggleBtn.addEventListener('click', () => {
+                const isCollapsed = container.classList.toggle('collapsed');
+                const icon = toggleBtn.querySelector('.icon');
+                const label = toggleBtn.querySelector('span:last-child');
+
+                if (isCollapsed) {
+                    icon.textContent = '▸';
+                    label.textContent = 'Expand';
+                } else {
+                    icon.textContent = '▾';
+                    label.textContent = 'Collapse';
+                }
+            });
         });
     </script>
 </body>

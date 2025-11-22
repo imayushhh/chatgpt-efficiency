@@ -16,18 +16,18 @@ app.use(cors());
 
 
 app.use(express.static("styles"));
-
+app.use(express.static("public"));
 
 app.get("/", cors(), (req, res) => {
     res.render("home", {text: "HOME PAGE"})
 });
 
 app.get("/project", cors(), (req, res) => {
-    res.send("projects page")
+    res.render("project", {text: "PROJECT PAGE"})
 });
 
 app.get("/analysis", cors(), (req, res) => {
-    res.send("analysis page");
+    res.render("analysis", {text: "ANALYSIS PAGE"})
 });
 
 app.listen(PORT, () => {
