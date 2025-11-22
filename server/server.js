@@ -9,28 +9,25 @@ const cors = require('cors');
 
 app.set('view engine', 'ejs');
 
-// middleware
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cors());
 
-// linking css files to express
+
 app.use(express.static("styles"));
 
 
-// render index.ejs in views
-// we can pass an additional argument in an object, that allows code to be sent over to views
-// project introduction and short bios about ourselv
 app.get("/", cors(), (req, res) => {
     res.render("home", {text: "HOME PAGE"})
 });
 
-app.get("/about", cors(), (req, res) => {
-    res.send("about page");
-});
-
 app.get("/project", cors(), (req, res) => {
     res.send("projects page")
+});
+
+app.get("/analysis", cors(), (req, res) => {
+    res.send("analysis page");
 });
 
 app.listen(PORT, () => {

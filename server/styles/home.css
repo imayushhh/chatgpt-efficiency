@@ -1,10 +1,11 @@
 body {
     width: 100%;
-    height: auto;
+    height: 100vh;
     margin: 0;
     overflow: scroll;
     overflow-x: hidden;
     font-family: "Nunito Sans", sans-serif;
+    background-color: rgb(232, 242, 250);
 }
 
 a {
@@ -13,12 +14,13 @@ a {
 
 .home-container {
     width: 100%;
-    height: auto;
+    height: 1200px;
     /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-evenly;
+    background-color: rgb(24, 24, 27);
 }
 
 .header-container {
@@ -28,32 +30,47 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 22px;
-    text-decoration: underline;
-    font-weight: 900;
+    font-size: 40px;
+    /* text-decoration: underline; */
+    font-weight: bolder;
+    color: rgb(168, 123, 223);
 }
 
 .body-container {
-    width: 100%;
+    width: 95%;
     height: 800px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 0.5% 0;
-    /* background-color: rgb(221, 198, 105); */
+    padding: 2.5% 0 0.5% 0;
+    background: linear-gradient(-90deg,
+  rgb(140, 90, 200),
+  rgb(166, 125, 243),
+  rgb(202, 175, 255)
+    );
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.aphy-intro a,
+.ayush-intro a {
+    color: black;
+    /* font-weight: 600; */
+    transition: transform 0.32s ease;
+}
+
 
 #view-github {
     margin: 0%;
-    font-weight: 300;
+    font-weight: 800;
 }
 
 .bios-title,
 .about-project-title {
-    text-decoration: underline;
     font-weight: bold;
-    margin: 0% 2%;
+    margin: 0% 5%;
     font-size: 32px;
+    /* text-decoration: underline; */
 }
 
 .aphy-intro-container,
@@ -62,9 +79,9 @@ a {
     /* border: 2px solid red; */
     width: 70%;
     height: auto;
-    margin: 0.25% 2%;
-    font-size: 18px;
-    line-height: 2;
+    margin: 0.25% 5%;
+    font-size: 20px;
+    line-height: 1.75;
 }
 
 
@@ -77,6 +94,19 @@ a {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+@keyframes titleAppear {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.header-container {
+    animation: .6s ease-in 0s 1 titleAppear;
 }
 
 .body-container {
