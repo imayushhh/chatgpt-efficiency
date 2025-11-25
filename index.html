@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Use relative path for GitHub Pages -->
+    <link rel="stylesheet" href="/chatgpt-efficiency/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js CDN for Analysis page -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>ChatGPT Efficiency Evaluation</title>
+</head>
+
+<body>
+    <!-- Assistant Agent (shared across all sections) -->
+    <div id="assistant-container">
+        <div class="assistant-header">
+            <div class="assistant-header-left">
+                <div class="assistant-character"></div>
+                <div class="assistant-name">
+                    <span>Project Assistant</span>
+                    <span>Guiding you through the site</span>
+                </div>
+            </div>
+            <button id="assistant-toggle" class="assistant-toggle-btn">
+                <span class="icon">▾</span>
+                <span>Collapse</span>
+            </button>
+        </div>
+        <div class="assistant-speech-bubble">
+            <p id="assistant-text">Welcome! I’ll guide you through this assignment.</p>
+        </div>
+    </div>
+
+    <div class="home-container">
+        <!-- Global Navigation with HASH ROUTES -->
+        <nav class="nav-container">
+            <div class="nav-inner">
+                <div class="nav-left">
+                    <img class="nav-logo-img" src="images/logo.png" alt="Logo">
+                    <div class="nav-title">ChatGPT Efficiency</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#project" class="nav-link">Project</a>
+                    <a href="#analysis" class="nav-link">Analysis</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="page-inner">
+            <!-- ========================= -->
+            <!-- HOME SECTION              -->
+            <!-- ========================= -->
+            <section id="home" class="body-container page-section">
+                <!-- Hero / Header -->
+                <header class="header-container">
+                    <div class="header-content">
+                        <p class="header-eyebrow">ITEC 4020 · Internet Client-Server Systems</p>
+                        <h1 class="header-title">ChatGPT Efficiency Assignment</h1>
+                        <p class="header-subtitle">
+                            A full-stack web application that measures how accurately and efficiently ChatGPT answers
+                            multiple-choice questions across different domains.
+                        </p>
+                    </div>
+                </header>
+
+                <!-- Student Profiles -->
+                <div class="section-header">
+                    <h2 class="section-title">Student Profiles</h2>
+                    <p class="section-subtitle">Meet the team behind this evaluation project.</p>
+                </div>
+
+                <div class="bio-grid">
+                    <!-- Aphason -->
+                    <article class="bio-card">
+                        <div class="bio-header">
+                            <img class="bio-photo" src="images/aphy.jpeg" alt="Aphason Photo">
+                            <div>
+                                <h3 class="bio-name">
+                                    <a href="https://github.com/aphy18" target="_blank" rel="noopener noreferrer">
+                                        Aphason Aberham
+                                    </a>
+                                </h3>
+                                <p class="bio-role">BCom, Information Technology · York University</p>
+                            </div>
+                        </div>
+                        <p class="bio-body">
+                            I am a third-year Bachelor of Commerce student majoring in Information Technology at York
+                            University, based in downtown Toronto. I enjoy building full-stack web applications and
+                            experimenting with modern JavaScript frameworks.
+                            I have experience with HTML, CSS, JavaScript, Node.js, Express.js, React, PostgreSQL, EJS,
+                            and jQuery. This project strengthened my skills in backend APIs, database integration, and
+                            real-time communication.
+                        </p>
+                        <div class="bio-tags">
+                            <span class="tag-pill accent">Full-Stack Development</span>
+                            <span class="tag-pill">React · Node.js · Express</span>
+                            <span class="tag-pill">PostgreSQL · EJS</span>
+                        </div>
+                        <div class="bio-footer">
+                            <a class="link-button" href="https://github.com/aphy18" target="_blank" rel="noopener noreferrer">
+                                <span>GitHub Profile</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Ayush -->
+                    <article class="bio-card">
+                        <div class="bio-header">
+                            <img class="bio-photo" src="images/ayushg.png" alt="Ayush Photo">
+                            <div>
+                                <h3 class="bio-name">
+                                    <a href="https://github.com/imayushhh" target="_blank" rel="noopener noreferrer">
+                                        Ayush Gupta
+                                    </a>
+                                </h3>
+                                <p class="bio-role">BA, Information Technology · York University</p>
+                            </div>
+                        </div>
+                        <p class="bio-body">
+                            I am a Bachelor of Arts student in Information Technology with a strong interest in cloud
+                            computing, data, and full-stack development. I enjoy building interactive, data-driven
+                            applications and exploring how AI can be applied to real-world scenarios.
+                            My technical background includes JavaScript, Python, HTML, CSS, Bootstrap, Node.js, and
+                            Express.js, and I am actively expanding my skills in backend systems and cloud platforms.
+                        </p>
+                        <div class="bio-tags">
+                            <span class="tag-pill accent">Cloud & AI Enthusiast</span>
+                            <span class="tag-pill">JavaScript · Python</span>
+                            <span class="tag-pill">Node.js · Express</span>
+                        </div>
+                        <div class="bio-footer">
+                            <a class="link-button" href="https://github.com/imayushhh" target="_blank"
+                               rel="noopener noreferrer">
+                                <span>GitHub Profile</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Project Overview -->
+                <div class="section-header">
+                    <h2 class="section-title">About the Project</h2>
+                    <p class="section-subtitle">How we evaluate ChatGPT’s performance across multiple domains.</p>
+                </div>
+
+                <section class="project-overview-card">
+                    <div class="project-text">
+                        <p>
+                            This application evaluates ChatGPT’s performance on multiple-choice questions drawn from
+                            domains such as <strong>History</strong>, <strong>Social Science</strong>, and
+                            <strong>Computer Security</strong>. Questions are stored in a MongoDB database and served
+                            through a Node.js and Express backend.
+                        </p>
+                        <p>
+                            For each evaluation run, the server retrieves a set of questions, sends them to ChatGPT via
+                            the OpenAI API, and records the model’s selected answers along with detailed response-time
+                            measurements. The results are written back to MongoDB for further analysis and visualization
+                            on the client side.
+                        </p>
+                    </div>
+                    <ul class="project-highlight-list">
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Validates user inputs with custom Express middleware before running any evaluation.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Streams live evaluation progress to the browser using WebSockets.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Calculates metrics such as accuracy and response time per domain for later analysis.</span>
+                        </li>
+                        <li>
+                            <span class="bullet-dot"></span>
+                            <span>Demonstrates full-stack development: MongoDB, Node.js/Express, WebSocket, and a dynamic frontend.</span>
+                        </li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- ========================= -->
+            <!-- PROJECT SECTION           -->
+            <!-- ========================= -->
+            <section id="project" class="body-container page-section" style="display:none;">
+                <!-- Page header -->
+                <header class="header-container">
+                    <div class="header-content">
+                        <p class="header-eyebrow">Control Panel</p>
+                        <h1 class="header-title">ChatGPT Evaluation Runner</h1>
+                        <p class="header-subtitle">
+                            Configure an evaluation run by choosing the domain and number of questions. Live progress is
+                            streamed to this page using WebSockets as the server works through each item.
+                        </p>
+                    </div>
+                </header>
+
+                <div class="section-header">
+                    <h2 class="section-title">Evaluation Setup</h2>
+                    <p class="section-subtitle">Select your domain and question limit, then start the ChatGPT run.</p>
+                </div>
+
+                <div class="evaluation-panel">
+                    <!-- Left: explanation -->
+                    <section class="project-intro-card">
+                        <p>
+                            This control panel triggers the evaluation pipeline on the server. When you press
+                            <strong>Start ChatGPT Evaluation</strong>, the backend:
+                        </p>
+                        <ol class="project-steps">
+                            <li>Validates your inputs using Express middleware to ensure safe and correct parameters.</li>
+                            <li>Retrieves multiple-choice questions for the selected domain from MongoDB.</li>
+                            <li>Sends each question to ChatGPT via the OpenAI API and records the model’s response.</li>
+                            <li>Measures response time for each question and stores both accuracy and timing metrics.</li>
+                            <li>Streams live status updates back to this page over a WebSocket connection.</li>
+                        </ol>
+                        <p style="margin-top: 10px;">
+                            You can run evaluations for a specific domain (History, Social Science, or Computer
+                            Security) or against all domains at once. Results are later aggregated on the Analysis
+                            page to help compare ChatGPT’s performance across topics.
+                        </p>
+                    </section>
+
+                    <!-- Right: controls -->
+                    <section class="control-section">
+                        <div class="input-group">
+                            <label for="domain-select">Select domain</label>
+                            <p class="input-description">
+                                Choose a specific subject area or evaluate all domains together.
+                            </p>
+                            <select id="domain-select">
+                                <option value="History">History</option>
+                                <option value="Social_Science">Social Science</option>
+                                <option value="Computer_Security">Computer Security</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="question-limit">Question limit (1–100)</label>
+                            <p class="input-description">
+                                Controls how many questions will be sent to ChatGPT in this run. Higher limits take
+                                longer but provide more accurate statistics.
+                            </p>
+                            <input type="number" id="question-limit" placeholder="Please Enter the Value" min="1" max="100">
+                        </div>
+
+                        <button id="start-evaluation-btn">
+                            Start ChatGPT Evaluation
+                        </button>
+
+                        <div class="websocket-status-box">
+                            <h4>Live Evaluation Status</h4>
+                            <pre id="status-log">Waiting to start evaluation…</pre>
+                        </div>
+                    </section>
+                </div>
+            </section>
+
+            <!-- ========================= -->
+            <!-- ANALYSIS SECTION          -->
+            <!-- ========================= -->
+            <section id="analysis" class="body-container page-section" style="display:none;">
+                <!-- Page Header -->
+                <header class="header-container">
+                    <div class="header-content">
+                        <p class="header-eyebrow">Data Analysis & Visualization</p>
+                        <h1 class="header-title">Results Dashboard</h1>
+                        <p class="header-subtitle">
+                            This page summarizes ChatGPT’s performance by comparing its answers with the correct ones,
+                            calculating accuracy per domain, and measuring average response time. All results are visualized
+                            using Chart.js.
+                        </p>
+                    </div>
+                </header>
+
+                <div class="section-header">
+                    <h2 class="section-title">Results</h2>
+                    <p class="section-subtitle">
+                        Accuracy evaluation, response time analysis, and a combined summary dashboard.
+                    </p>
+                </div>
+
+                <!-- Summary metric cards -->
+                <section class="results-summary-grid">
+                    <div class="metric-card">
+                        <p class="metric-label">Total Questions</p>
+                        <p id="metric-total-questions" class="metric-value">—</p>
+                        <p class="metric-caption">Questions included in all evaluations.</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Questions Answered</p>
+                        <p id="metric-answered-questions" class="metric-value">—</p>
+                        <p class="metric-caption">Questions where ChatGPT provided an answer.</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Correct Answers</p>
+                        <p id="metric-correct-answers" class="metric-value">—</p>
+                        <p class="metric-caption">Matches between ChatGPT and the expected answer.</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="metric-label">Overall Accuracy</p>
+                        <p id="metric-overall-accuracy" class="metric-value">—</p>
+                        <p class="metric-caption">Percentage of correct answers across all domains.</p>
+                    </div>
+                </section>
+
+                <!-- Charts grid -->
+                <section class="charts-grid">
+                    <!-- Accuracy bar chart -->
+                    <article class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Accuracy per Domain</h3>
+                            <p class="chart-subtitle">
+                                Shows how often ChatGPT answered correctly in each subject area.
+                            </p>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="accuracyChart"></canvas>
+                        </div>
+                    </article>
+
+                    <!-- Response time line chart -->
+                    <article class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Average Response Time per Domain</h3>
+                            <p class="chart-subtitle">
+                                Average time (in seconds) ChatGPT took to answer questions in each domain.
+                            </p>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="responseTimeChart"></canvas>
+                        </div>
+                    </article>
+
+                    <!-- Combined summary dashboard chart -->
+                    <article class="chart-card chart-card-wide">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Combined Summary Dashboard</h3>
+                            <p class="chart-subtitle">
+                                Accuracy and response time displayed together to compare how speed relates to
+                                correctness across domains.
+                            </p>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="combinedChart"></canvas>
+                        </div>
+                    </article>
+                </section>
+            </section>
+        </main>
+    </div>
+
+   
+    <script>
+
+    let ws;
+
+        function initWebSocket() {
+            if (ws && ws.readyState === WebSocket.OPEN) return;
+
+            ws = new WebSocket("ws://localhost:3000/ws");
+
+            ws.onopen = () => {
+                const statusLog = document.getElementById("status-log");
+                if (statusLog) statusLog.textContent = "WebSocket connected...\n";
+            };
+
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const statusLog = document.getElementById("status-log");
+                if (!statusLog) return;
+
+                // --- CASE 1: All questions evaluated already ---
+                if (data.done && data.message) {
+                    statusLog.textContent += "";
+                    return;
+                }
+
+                // --- CASE 2: Standard progress update ---
+                if (data.current) {
+                    statusLog.textContent += `${data.progress} → GPT: ${data.current.ChatGPT_answer} | Actual: ${data.current.Actual_Answer}\n`;
+                }
+            };
+        }
+
+
+        // Sticky nav shadow
+        window.addEventListener("scroll", () => {
+            const nav = document.querySelector(".nav-container");
+            if (!nav) return;
+            if (window.pageYOffset > 0) {
+                nav.classList.add("add-shadow");
+            } else {
+                nav.classList.remove("add-shadow");
+            }
+        });
+
+        // Assistant logic: rotating tips + collapse
+        document.addEventListener("DOMContentLoaded", () => {
+            const bubble = document.querySelector(".assistant-speech-bubble");
+            const textElement = document.getElementById("assistant-text");
+            const character = document.querySelector(".assistant-character");
+            const container = document.getElementById("assistant-container");
+            const toggleBtn = document.getElementById("assistant-toggle");
+
+            if (!textElement || !bubble || !character || !container || !toggleBtn) {
+                console.error("Assistant elements not found. Check HTML structure.");
+            } else {
+                const facts = [
+                    "Welcome! This site evaluates how well ChatGPT answers multiple-choice questions.",
+                    "Use the navigation bar to explore the Home, Project, and Analysis sections.",
+                    "Questions are pulled from MongoDB and sent to ChatGPT through the OpenAI API.",
+                    "We measure both accuracy and response time for each domain.",
+                    "Live evaluation status is streamed to the browser using WebSockets.",
+                    "Custom middleware validates all inputs before the evaluation starts.",
+                    "Check the Analysis page to see how ChatGPT performed across domains.",
+                    "Use small question limits first to make sure everything works before long runs."
+                ];
+
+                let factIndex = 0;
+                const intervalTime = 9000;
+
+                function updateFact() {
+                    bubble.classList.remove("visible");
+
+                    setTimeout(() => {
+                        textElement.textContent = facts[factIndex];
+                        factIndex = (factIndex + 1) % facts.length;
+                        bubble.classList.add("visible");
+                    }, 400);
+                }
+
+                updateFact();
+                let interval = setInterval(updateFact, intervalTime);
+
+                character.addEventListener("click", () => {
+                    clearInterval(interval);
+                    updateFact();
+                    interval = setInterval(updateFact, intervalTime);
+                });
+
+                toggleBtn.addEventListener("click", () => {
+                    const isCollapsed = container.classList.toggle("collapsed");
+                    const icon = toggleBtn.querySelector(".icon");
+                    const label = toggleBtn.querySelector("span:last-child");
+
+                    if (isCollapsed) {
+                        icon.textContent = "▸";
+                        label.textContent = "Expand";
+                    } else {
+                        icon.textContent = "▾";
+                        label.textContent = "Collapse";
+                    }
+                });
+            }
+
+            // ---- WebSocket + Evaluation logic (Project section) ----
+            const startBtn = document.getElementById("start-evaluation-btn");
+            const domainSelect = document.getElementById("domain-select");
+            const questionLimit = document.getElementById("question-limit");
+            const statusLog = document.getElementById("status-log");
+
+            if (startBtn && domainSelect && questionLimit && statusLog) {
+
+                initWebSocket(); 
+
+                startBtn.addEventListener("click", async () => {
+                    const domain = domainSelect.value;
+                    const limit = questionLimit.value;
+
+                    statusLog.textContent = "Evaluation started...\n";
+
+                    const response = await fetch(
+                        `http://localhost:3000/api/evaluate?domain=${encodeURIComponent(domain)}&limit=${encodeURIComponent(limit)}`
+                    );
+                    const result = await response.json();
+
+                    if (result.total === 0) {
+                        statusLog.textContent += `⚠️ ${result.message}\n`;
+                        return;
+                    }
+
+
+
+
+                    statusLog.textContent += `Evaluation finished. Total: ${result.total}\n`;
+                });
+            }
+        });
+
+        async function loadResultsAndRenderCharts() {
+            try {
+                const res = await fetch("http://localhost:3000/api/results");
+                const data = await res.json();
+
+                // 1. SUMMARY METRICS
+                const summary = data.summary || {};
+
+                document.getElementById("metric-total-questions").textContent =
+                    summary.totalQuestions ?? "0";
+
+                document.getElementById("metric-answered-questions").textContent =
+                    summary.answeredQuestions ?? "0";
+
+                document.getElementById("metric-correct-answers").textContent =
+                    summary.correctAnswers ?? "0";
+
+                document.getElementById("metric-overall-accuracy").textContent =
+                    summary.overallAccuracy != null
+                        ? summary.overallAccuracy.toFixed(2) + "%"
+                        : "0%";
+
+                // 2. DOMAIN DATA
+                const domains = data.domains || [];
+
+                const labels = domains.map(d => d.domain.replace(/_/g, " "));
+                const accuracies = domains.map(d => d.accuracy ?? 0);
+                const avgTimes = domains.map(d => d.avgResponseTime ?? 0);
+
+                const accuracyCtx = document.getElementById("accuracyChart").getContext("2d");
+                const responseTimeCtx = document.getElementById("responseTimeChart").getContext("2d");
+                const combinedCtx = document.getElementById("combinedChart").getContext("2d");
+
+                // 3. ACCURACY BAR CHART
+                new Chart(accuracyCtx, {
+                    type: "bar",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: "Accuracy (%)",
+                            data: accuracies,
+                            backgroundColor: "rgba(168, 85, 247, 0.7)",
+                            borderColor: "rgba(168, 85, 247, 1)",
+                            borderWidth: 1.5,
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        interaction: {
+                            mode: "index",
+                            intersect: false
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                title: { display: true, text: "Accuracy (%)" }
+                            },
+                            x: {
+                                title: { display: true, text: "Domain" }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                                backgroundColor: "rgba(15,23,42,0.95)",
+                                bodyColor: "#fff",
+                                titleColor: "#fff",
+                                borderWidth: 1,
+                                borderColor: "rgba(168,85,247,0.5)",
+                                callbacks: {
+                                    label: (ctx) => `Accuracy: ${ctx.parsed.y.toFixed(2)}%`
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 4. RESPONSE TIME LINE CHART
+                new Chart(responseTimeCtx, {
+                    type: "line",
+                    data: {
+                        labels,
+                        datasets: [{
+                            label: "Avg Response Time (s)",
+                            data: avgTimes,
+                            borderColor: "rgba(56, 189, 248, 1)",
+                            backgroundColor: "rgba(56, 189, 248, 0.2)",
+                            tension: 0.3,
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointHitRadius: 20,
+                            pointBackgroundColor: "rgba(56, 189, 248, 1)"
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        interaction: {
+                            mode: "index",
+                            intersect: false
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                suggestedMax: Math.max(...avgTimes, 1) + 0.5,
+                                grace: "30%",
+                                title: { display: true, text: "Seconds" }
+                            },
+                            x: {
+                                title: { display: true, text: "Domain" }
+                            }
+                        },
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                                backgroundColor: "rgba(15,23,42,0.95)",
+                                titleColor: "#fff",
+                                bodyColor: "#fff",
+                                borderColor: "rgba(96,165,250,0.5)",
+                                borderWidth: 1,
+                                displayColors: false,
+                                yAlign: "bottom",
+                                callbacks: {
+                                    label: (ctx) => `Avg Time: ${ctx.parsed.y.toFixed(2)} s`
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // 5. COMBINED CHART
+                new Chart(combinedCtx, {
+                    type: "bar",
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                type: "bar",
+                                label: "Accuracy (%)",
+                                data: accuracies,
+                                backgroundColor: "rgba(168,85,247,0.6)",
+                                borderColor: "rgba(168,85,247,1)",
+                                borderWidth: 1.5,
+                                borderRadius: 10,
+                                yAxisID: "y1"
+                            },
+                            {
+                                type: "line",
+                                label: "Avg Response Time (s)",
+                                data: avgTimes,
+                                borderColor: "rgba(56,189,248,1)",
+                                backgroundColor: "rgba(56,189,248,0.25)",
+                                tension: 0.3,
+                                pointRadius: 8,
+                                pointHoverRadius: 14,
+                                pointHitRadius: 24,
+                                pointBorderWidth: 2,
+                                pointBackgroundColor: "rgba(56,189,248,1)",
+                                yAxisID: "y2"
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        interaction: {
+                            mode: "index",
+                            intersect: false
+                        },
+                        plugins: {
+                            legend: {
+                                labels: { color: "#fff" }
+                            },
+                            tooltip: {
+                                mode: "index",
+                                intersect: false,
+                                backgroundColor: "rgba(15,23,42,0.95)",
+                                titleColor: "#fff",
+                                bodyColor: "#fff",
+                                borderColor: "rgba(168,85,247,0.6)",
+                                borderWidth: 1,
+                                displayColors: false,
+                                padding: 12,
+                                callbacks: {
+                                    label: (ctx) => {
+                                        if (ctx.dataset.label.includes("Accuracy")) {
+                                            return `Accuracy: ${ctx.parsed.y.toFixed(2)}%`;
+                                        }
+                                        return `Avg time: ${ctx.parsed.y.toFixed(2)} s`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: "#fff" },
+                                title: { display: true, text: "Domain", color: "#fff" }
+                            },
+                            y1: {
+                                type: "linear",
+                                position: "left",
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { color: "#fff" },
+                                grid: { color: "rgba(255,255,255,0.15)" },
+                                title: { display: true, text: "Accuracy (%)", color: "#fff" }
+                            },
+                            y2: {
+                                type: "linear",
+                                position: "right",
+                                beginAtZero: true,
+                                suggestedMax: Math.max(...avgTimes, 1) + 1,
+                                ticks: { color: "#fff" },
+                                grid: { drawOnChartArea: false },
+                                title: { display: true, text: "Avg Response Time (s)", color: "#fff" }
+                            }
+                        },
+                        elements: {
+                            point: {
+                                radius: 7,
+                                hoverRadius: 15,
+                                hitRadius: 25,
+                                hoverBorderWidth: 3,
+                                backgroundColor: "rgba(56,189,248,1)",
+                                hoverBackgroundColor: "#ffffff"
+                            }
+                        },
+                        animation: {
+                            duration: 750,
+                            easing: "easeOutQuart"
+                        }
+                    }
+                });
+
+            } catch (err) {
+                console.error("Error loading http://localhost:3000/api/results", err);
+            }
+        }
+    </script>
+
+    <!-- Router logic in separate file -->
+    <script src="router.js"></script>
+</body>
+</html>
